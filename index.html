@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Momentum App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header id="intro-header">
+      <img class="logo" src="#" />
+    </header>
+
+    <section id="intro-page-1">
+      <div class="container">
+        <form id="intro-form-1">
+          <div>Hello, what's your name?</div>
+          <input type="text" id="name" />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </section>
+    <!-- hidden email -->
+    <section id="intro-page-2" class="hidden">
+      <div class="container">
+        <form id="intro-form-2">
+          <div>What's your email, name?</div>
+          <input type="email" id="email" />
+        </form>
+      </div>
+      <div>
+        <button class="button" id="change-name">Change name</button>
+        <button class="button" id="stay-logged-out">Stay logged out</button>
+      </div>
+    </section>
+
+    <section class="hidden" id="welcome-page">
+      <div class="container">
+        <h1 class="">Welcome to Momentum</h1>
+        <p>
+          This is your space to find focus, calm, and inspiration with every new
+          tab you open.
+        </p>
+        <p>
+          Rule out distraction with simple tools that will help you achieve your
+          goals consistently—even when life gets busy.
+        </p>
+      </div>
+      <button class="button">Get the tour!</button>
+      <button class="button">SKIP</button>
+    </section>
+    <section class="hidden" id="main-page">
+      <!-- clock -->
+      <div id="clock">8:18 PM</div>
+
+      <!-- greeting -->
+      <div id="greeting">Good Evening, Name.</div>
+
+      <!-- quote -->
+      <div id="quotes">"Insert quote here" - Jose Saribong</div>
+
+      <!-- todo list -->
+      <div id="todo-list"></div>
+    </section>
+    <script src="main.js"></script>
+  </body>
+</html>
