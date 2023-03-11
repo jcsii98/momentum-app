@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Momentum App</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header id="intro-header">
@@ -15,9 +21,8 @@
     <section id="intro-page-1">
       <div class="container">
         <form id="intro-form-1">
-          <div>Hello, what's your name?</div>
+          <div class="primary-heading">Hello, what's your name?</div>
           <input type="text" id="name" />
-          <button type="submit">Submit</button>
         </form>
       </div>
     </section>
@@ -25,13 +30,13 @@
     <section id="intro-page-2" class="hidden">
       <div class="container">
         <form id="intro-form-2">
-          <div>What's your email, name?</div>
+          <div id="email-greeting" class="primary-heading"></div>
           <input type="email" id="email" />
         </form>
-      </div>
-      <div>
-        <button class="button" id="change-name">Change name</button>
-        <button class="button" id="stay-logged-out">Stay logged out</button>
+        <div>
+          <button class="button" id="change-name">Change name</button>
+          <button class="button" id="stay-logged-out">Stay logged out</button>
+        </div>
       </div>
     </section>
 
@@ -47,22 +52,28 @@
           goals consistently—even when life gets busy.
         </p>
       </div>
-      <button class="button">Get the tour!</button>
-      <button class="button">SKIP</button>
+      <button id="proceed-button" class="button">PROCEED</button>
     </section>
     <section class="hidden" id="main-page">
-      <!-- clock -->
-      <div id="clock">8:18 PM</div>
+      <div class="container">
+        <!-- clock -->
+        <div class="clock-container">
+          <div class="primary-heading" id="currentTime"></div>
+          <!-- 24hr -> 12 hr format -->
+          <button id="clock-button"><img src="#" /></button>
+        </div>
+        <!-- greeting -->
+        <div id="greeting"></div>
+      </div>
+    </section>
 
-      <!-- greeting -->
-      <div id="greeting">Good Evening, Name.</div>
-
-      <!-- quote -->
+    <!-- quote -->
+    <footer id="main-footer" class="hidden">
       <div id="quotes">"Insert quote here" - Jose Saribong</div>
 
       <!-- todo list -->
       <div id="todo-list"></div>
-    </section>
+    </footer>
     <script src="main.js"></script>
   </body>
 </html>
