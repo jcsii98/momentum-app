@@ -5,7 +5,6 @@ const nameForm = document.getElementById("intro-form-1");
 const emailForm = document.getElementById("intro-form-2");
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
-
 // add event listener to name form
 
 nameForm.addEventListener("submit", (event) => {
@@ -29,6 +28,28 @@ nameForm.addEventListener("submit", (event) => {
 
 });
 
+// change name and stay logged out
+const changeName = document.getElementById("change-name");
+const stayLoggedOut = document.getElementById("stay-logged-out");
+
+changeName.addEventListener('click', (event) => {
+  //prevent refresh
+  event.preventDefault();
+  // go back to name input
+  nameFormPage.classList.remove('hidden');
+  emailFormPage.classList.add('hidden');
+  nameInput.value = "";
+})
+
+stayLoggedOut.addEventListener('click', (event) => {
+  //prevent refresh
+  event.preventDefault();
+  //proceed to welcome page
+  const welcomePage = document.getElementById("welcome-page");
+  welcomePage.classList.remove('hidden');
+  emailFormPage.classList.add('hidden');
+})
+
 // add event listener to email form
 
 emailForm.addEventListener("submit", (event) => {
@@ -43,7 +64,6 @@ emailForm.addEventListener("submit", (event) => {
     
     // show welcome page
 
-    const welcomePage = document.getElementById("welcome-page");
     welcomePage.classList.remove("hidden");
 }) 
 
@@ -78,20 +98,61 @@ procButton.addEventListener('click', function() {
 
 // time API
 
-  // update time 
-  function updateTime() {
-  var request = new XMLHttpRequest();
-  request.open('GET', 'http://worldtimeapi.org/api/timezone/Etc/UTC', true);
-  request.onload = function() {
-    if (request.status >= 200 && request.status < 400) {
-      var response = JSON.parse(request.responseText);
-      var datetime = response.utc_datetime;
-      var currentTime = new Date(datetime);
-      document.getElementById("currentTime").textContent = currentTime.toLocaleTimeString();
+    let is12Hour = is12HourFormat();
+
+    function getTime() {
+      const date = new Date();
+      const formatter = new Intl.DateTimeFormat('en-US', {
+        hour12: is12Hour,
+        hour: 'numeric',
+        minute: 'numeric',
+      });
+      return formatter.format(date);
+    }
+
+    function is12HourFormat() {
+      const formatter = new Intl.DateTimeFormat('en-US', {
+        hour: 'numeric'
+      });
+      const timeString = formatter.format(new Date());
+      return timeString.indexOf() > -1 || timeString.indexOf() > -1;
+    }
+
+    function displayTime() {
+      const time = getTime();
+      const timeEl = document.getElementById('time');
+      timeEl.textContent = time;
+    }
+
+    function toggleFormat() {
+      is12Hour = !is12Hour;
+    }
+
+    setInterval(displayTime, 1000);
+
+
+// quotes API
+
+// Define quote dom
+
+const quote = document.querySelector("blockquote p");
+const cite = document.querySelector("blockquote cite");
+
+// Define a function to fetch the quote
+  async function updateQuote() {
+    // Fetch a random quote from the Quotable API
+    const response = await fetch("https://api.quotable.io/random");
+    const data = await response.json();
+    if (response.ok) {
+      // Update DOM elements
+      quote.textContent = `"${data.content}"`;
+      cite.textContent = `- ${data.author}`;
+    } else {
+      quote.textContent = "An error occured";
+      console.log(data);
     }
   };
-  request.send();
-}
-  setInterval(updateTime, 1000);
 
+  updateQuote();
 
+  setInterval(updateQuote, 60000);

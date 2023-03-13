@@ -13,67 +13,125 @@
       rel="stylesheet"
     />
   </head>
-  <body>
-    <header id="intro-header">
-      <img class="logo" src="#" />
-    </header>
-
-    <section id="intro-page-1">
-      <div class="container">
+  <body id="body">
+    <section id="intro-page-1" class="intro-page">
+      <div class="intro-top"><img class="logo" src="#" /></div>
+      <div class="form-container">
         <form id="intro-form-1">
-          <div class="primary-heading">Hello, what's your name?</div>
-          <input type="text" id="name" />
+          <label for="name" class="primary-heading fs-primary-heading"
+            >Hello, what's your name?</label
+          >
+          <input type="text" id="name" autocomplete="off" />
         </form>
       </div>
     </section>
     <!-- hidden email -->
-    <section id="intro-page-2" class="hidden">
-      <div class="container">
+    <section id="intro-page-2" class="hidden intro-page">
+      <div class="intro-top"><img class="logo" src="#" /></div>
+      <div class="form-container">
         <form id="intro-form-2">
-          <div id="email-greeting" class="primary-heading"></div>
-          <input type="email" id="email" />
+          <label
+            for="email"
+            id="email-greeting"
+            class="primary-heading fs-primary-heading"
+          ></label>
+          <input type="email" id="email" autocomplete="off" />
         </form>
-        <div>
-          <button class="button" id="change-name">Change name</button>
-          <button class="button" id="stay-logged-out">Stay logged out</button>
-        </div>
+      </div>
+      <div class="button-container">
+        <button class="button" id="change-name">
+          <img class="back-button" src="resources/back (1).png" />Change name
+        </button>
+        <button class="button" id="stay-logged-out">
+          Skip for now
+          <img class="back-button reverse-img" src="resources/back.png" />
+        </button>
       </div>
     </section>
 
     <section class="hidden" id="welcome-page">
-      <div class="container">
-        <h1 class="">Welcome to Momentum</h1>
-        <p>
+      <div class="intro-top"></div>
+      <div class="container text-center padding-block-900">
+        <h1 class="primary-heading fs-primary-heading">Welcome to Momentum</h1>
+        <p class="padding-block-900">
           This is your space to find focus, calm, and inspiration with every new
           tab you open.
         </p>
-        <p>
+        <p class="padding-block-400">
           Rule out distraction with simple tools that will help you achieve your
           goals consistently—even when life gets busy.
         </p>
+        <button id="proceed-button" class="button">Get Started!</button>
       </div>
-      <button id="proceed-button" class="button">PROCEED</button>
     </section>
     <section class="hidden" id="main-page">
       <div class="container">
         <!-- clock -->
         <div class="clock-container">
-          <div class="primary-heading" id="currentTime"></div>
+          <div class="clock primary-heading fs-clock" id="time"></div>
           <!-- 24hr -> 12 hr format -->
-          <button id="clock-button"><img src="#" /></button>
+          <button
+            onclick="toggleFormat()"
+            class="clock-button"
+            id="clock-button"
+          >
+            <img src="resources/cycle.png" />
+          </button>
         </div>
-        <!-- greeting -->
-        <div id="greeting"></div>
+      </div>
+      <!-- greeting -->
+      <div class="container">
+        <div class="primary-heading fs-primary-heading" id="greeting"></div>
+        <div class="todo-main-container fs-secondary-heading">
+          <form id="todo-main" class="todo-main">
+            <label for="todo-main">What is your main focus for today?</label>
+            <input
+              type="text"
+              name="todo-main"
+              id="todo-input"
+              autocomplete="off"
+            />
+          </form>
+        </div>
       </div>
     </section>
 
     <!-- quote -->
     <footer id="main-footer" class="hidden">
-      <div id="quotes">"Insert quote here" - Jose Saribong</div>
+      <blockquote class="blockquote">
+        <p class="quote"></p>
+        <cite class="author"></cite>
+      </blockquote>
 
       <!-- todo list -->
       <div id="todo-list"></div>
     </footer>
     <script src="main.js"></script>
+    <!-- background cycle -->
+    <script>
+      const backgrounds = [
+        "/resources/azamat-esmurziyev-5pGmEnEfBgA-unsplash.jpg",
+        "/resources/maciek-sulkowski-VtQ7UGevG-I-unsplash.jpg",
+        "/resources/mark-stuckey-Sk5htsyTsig-unsplash.jpg",
+        "/resources/ryunosuke-kikuno-scYsB5TsaTE-unsplash.jpg",
+        "/resources/sajad-nori-suuKCJBdQ_Q-unsplash.jpg",
+      ];
+      const slideTime = 60000;
+      let i = 0;
+
+      function changeBackground() {
+        const transitionTime = 0;
+        document.body.style.transition = `background-image ${transitionTime}ms ease-in-out`;
+        document.body.style.backgroundImage = "url(" + backgrounds[i] + ")";
+        if (i < backgrounds.length - 1) {
+          i++;
+        } else {
+          i = 0;
+        }
+        setTimeout(changeBackground, slideTime);
+      }
+
+      window.onload = changeBackground;
+    </script>
   </body>
 </html>
